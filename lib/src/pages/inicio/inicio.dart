@@ -21,11 +21,21 @@ class Inicio extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        SelectableText(loremIpsum, style: GoogleFonts.josefinSans(textStyle: TextStyle(fontSize: 24))),
+        SelectableText(
+          loremIpsum,
+          style: GoogleFonts.josefinSans(
+            textStyle: TextStyle(fontSize: 24, height: 1.3),
+          ),
+        ),
         SizedBox(height: 16),
         Image.asset("images/teste-1.jpg"),
         SizedBox(height: 16),
-        SelectableText(loremIpsum, style: GoogleFonts.josefinSans(textStyle: TextStyle(fontSize: 24))),
+        SelectableText(
+          loremIpsum,
+          style: GoogleFonts.josefinSans(
+            textStyle: TextStyle(fontSize: 24),
+          ),
+        ),
         SizedBox(height: 16),
         Image.asset("images/teste-2.jpg"),
         SizedBox(height: 16),

@@ -37,14 +37,23 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       key: _scaffoldKey,
-      drawer: _shouldShowDrawer() ? HomeDrawer() : null,
+      drawer: _shouldShowDrawer()
+          ? HomeDrawer(
+              onItemTap: (idx) {
+                setState(() {
+                  Navigator.of(context).pop();
+                  _selectedPage = idx;
+                });
+              },
+            )
+          : null,
       body: SizedBox.expand(
         child: Stack(
           fit: StackFit.expand,
           children: [
             Container(
               color: Colors.grey.shade200,
-              padding: EdgeInsets.symmetric(horizontal: 56, vertical: 28),
+              padding: EdgeInsets.symmetric(horizontal: 48, vertical: 28),
               child: Column(
                 mainAxisSize: MainAxisSize.max,
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -70,7 +79,7 @@ class _HomePageState extends State<HomePage> {
                   SizedBox(height: 24),
                   Expanded(
                     child: FractionallySizedBox(
-                      widthFactor: 0.85,
+                      widthFactor: _shouldShowDrawer() ? 1 : 0.75,
                       child: Card(
                         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(32)),
                         elevation: 8,
@@ -119,7 +128,7 @@ class _HomePageState extends State<HomePage> {
           child: Text(
             element,
             style: GoogleFonts.josefinSans(
-              textStyle: TextStyle(color: Colors.blue.shade700, fontSize: 28),
+              textStyle: TextStyle(color: Colors.blue.shade700, fontSize: 24),
             ),
           ),
           style: TextButton.styleFrom(
@@ -138,12 +147,14 @@ class _HomePageState extends State<HomePage> {
     MediaQueryData mediaQuery = MediaQuery.of(context);
     Size size = mediaQuery.size;
 
-    return size.width < size.height && (size.width < 900 || size.height < 900);
+    return size.width <= size.height;
   }
 }
 
 class HomeDrawer extends StatelessWidget {
-  const HomeDrawer({Key? key}) : super(key: key);
+  final Function(int) onItemTap;
+
+  const HomeDrawer({Key? key, required this.onItemTap}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -151,9 +162,55 @@ class HomeDrawer extends StatelessWidget {
       child: Column(
         children: [
           ListTile(
-            title: Text("TESTE"),
-            onTap: () {},
-          )
+            title: Text(
+              "Início",
+              style: GoogleFonts.josefinSans(
+                textStyle: TextStyle(color: Colors.blue.shade700, fontSize: 24),
+              ),
+            ),
+            onTap: () => onItemTap(0),
+          ),
+          Divider(),
+          ListTile(
+            title: Text(
+              "Lista de Presentes",
+              style: GoogleFonts.josefinSans(
+                textStyle: TextStyle(color: Colors.blue.shade700, fontSize: 24),
+              ),
+            ),
+            onTap: () => onItemTap(1),
+          ),
+          Divider(),
+          ListTile(
+            title: Text(
+              "Confirmar Presença",
+              style: GoogleFonts.josefinSans(
+                textStyle: TextStyle(color: Colors.blue.shade700, fontSize: 24),
+              ),
+            ),
+            onTap: () => onItemTap(2),
+          ),
+          Divider(),
+          ListTile(
+            title: Text(
+              "Nossa História",
+              style: GoogleFonts.josefinSans(
+                textStyle: TextStyle(color: Colors.blue.shade700, fontSize: 24),
+              ),
+            ),
+            onTap: () => onItemTap(3),
+          ),
+          Divider(),
+          ListTile(
+            title: Text(
+              "Ensaios",
+              style: GoogleFonts.josefinSans(
+                textStyle: TextStyle(color: Colors.blue.shade700, fontSize: 24),
+              ),
+            ),
+            onTap: () => onItemTap(4),
+          ),
+          Divider(),
         ],
       ),
     );
