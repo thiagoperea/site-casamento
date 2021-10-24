@@ -1,4 +1,5 @@
 import 'package:casamento_site/src/pages/confirmar_presenca/confirmar_presenca.dart';
+import 'package:casamento_site/src/pages/detalhes_do_dia/detalhes_do_dia.dart';
 import 'package:casamento_site/src/pages/ensaios/ensaios.dart';
 import 'package:casamento_site/src/pages/inicio/inicio.dart';
 import 'package:casamento_site/src/pages/lista_de_presentes/lista_de_presentes.dart';
@@ -16,6 +17,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   final List<String> _buttons = [
     "Início",
+    "Detalhes do Dia",
     "Lista de Presentes",
     "Confirmar Presença",
     "Nossa História",
@@ -24,6 +26,7 @@ class _HomePageState extends State<HomePage> {
 
   final List<Widget> _pages = [
     const Inicio(),
+    const DetalhesDoDia(),
     const ListaDePresentes(),
     const ConfirmarPresenca(),
     const NossaHistoria(),
@@ -128,7 +131,7 @@ class _HomePageState extends State<HomePage> {
           child: Text(
             element,
             style: GoogleFonts.josefinSans(
-              textStyle: TextStyle(color: Colors.blue.shade700, fontSize: 24),
+              textStyle: TextStyle(color: Colors.blue.shade700, fontSize: 22),
             ),
           ),
           style: TextButton.styleFrom(
@@ -173,7 +176,7 @@ class HomeDrawer extends StatelessWidget {
           Divider(),
           ListTile(
             title: Text(
-              "Lista de Presentes",
+              "Detalhes do Dia",
               style: GoogleFonts.josefinSans(
                 textStyle: TextStyle(color: Colors.blue.shade700, fontSize: 24),
               ),
@@ -183,7 +186,7 @@ class HomeDrawer extends StatelessWidget {
           Divider(),
           ListTile(
             title: Text(
-              "Confirmar Presença",
+              "Lista de Presentes",
               style: GoogleFonts.josefinSans(
                 textStyle: TextStyle(color: Colors.blue.shade700, fontSize: 24),
               ),
@@ -193,7 +196,7 @@ class HomeDrawer extends StatelessWidget {
           Divider(),
           ListTile(
             title: Text(
-              "Nossa História",
+              "Confirmar Presença",
               style: GoogleFonts.josefinSans(
                 textStyle: TextStyle(color: Colors.blue.shade700, fontSize: 24),
               ),
@@ -203,12 +206,22 @@ class HomeDrawer extends StatelessWidget {
           Divider(),
           ListTile(
             title: Text(
-              "Ensaios",
+              "Nossa História",
               style: GoogleFonts.josefinSans(
                 textStyle: TextStyle(color: Colors.blue.shade700, fontSize: 24),
               ),
             ),
             onTap: () => onItemTap(4),
+          ),
+          Divider(),
+          ListTile(
+            title: Text(
+              "Ensaios",
+              style: GoogleFonts.josefinSans(
+                textStyle: TextStyle(color: Colors.blue.shade700, fontSize: 24),
+              ),
+            ),
+            onTap: () => onItemTap(5),
           ),
           Divider(),
         ],
